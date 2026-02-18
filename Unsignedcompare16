@@ -1,0 +1,30 @@
+CHIP UnsignedCompare16 {
+    IN a[16], b[16];
+    OUT eq,   // si a == b
+        lt,   // si a < b
+        gt;   // si a > b
+
+    PARTS:
+    Compare16Way(a=a[15], b=b[15], eq=eq15, lt=lt15, gt=gt15);
+    Compare16Way(a=a[14], b=b[14], eq=eq14, lt=lt14, gt=gt14);
+    Compare16Way(a=a[13], b=b[13], eq=eq13, lt=lt13, gt=gt13);
+    Compare16Way(a=a[12], b=b[12], eq=eq12, lt=lt12, gt=gt12);
+    Compare16Way(a=a[11], b=b[11], eq=eq11, lt=lt11, gt=gt11);
+    Compare16Way(a=a[10], b=b[10], eq=eq10, lt=lt10, gt=gt10);
+    Compare16Way(a=a[9], b=b[9], eq=eq9, lt=lt9, gt=gt9);
+    Compare16Way(a=a[8], b=b[8], eq=eq8, lt=lt8, gt=gt8);
+    Compare16Way(a=a[7], b=b[7], eq=eq7, lt=lt7, gt=gt7);
+    Compare16Way(a=a[6], b=b[6], eq=eq6, lt=lt6, gt=gt6);
+    Compare16Way(a=a[5], b=b[5], eq=eq5, lt=lt5, gt=gt5);
+    Compare16Way(a=a[4], b=b[4], eq=eq4, lt=lt4, gt=gt4);
+    Compare16Way(a=a[3], b=b[3], eq=eq3, lt=lt3, gt=gt3);
+    Compare16Way(a=a[2], b=b[2], eq=eq2, lt=lt2, gt=gt2);
+    Compare16Way(a=a[1], b=b[1], eq=eq1, lt=lt1, gt=gt1);
+    Compare16Way(a=a[0], b=b[0], eq=eq0, lt=lt0, gt=gt0);
+
+    Mux(a=lt0, b=lt1, sel=eq1, out=lt01);
+    Mux(a=gt0, b=gt1, sel=eq1, out=gt01);
+   
+    Or(a=lt15, b=gt15, out=eq);
+   
+}
