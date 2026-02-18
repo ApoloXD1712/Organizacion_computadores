@@ -1,0 +1,12 @@
+
+CHIP SatAddSub16 {
+    IN x[16], y[16], op;
+    OUT out[16];
+
+    PARTS:
+ 
+    Not16(in=y, out=notY);
+    Inc16(in=notY, out=negY);
+    Mux16(a=y, b=negY, sel=op, out=ySelected);
+    Add16(a=x, b=ySelected, out=out);
+}
